@@ -1,23 +1,31 @@
-# Importing the required Libraries to run the automated task
-from selenium import *
-import time
+import selenium, time
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions
+
+options = webdriver.EdgeOptions()
+options.page_load_strategy = 'normal'
+
+driver = webdriver.Edge(options=options)
+driver.get('https://www.amazon.com/?tag=hymsabk-20&ref=pd_sl_290dlthsvm_e&adgrpid=1341404752168026&hvadid=83838074749799&hvnetw=o&hvqmt=e&hvbmt=be&hvdev=c&hvlocint=&hvlocphy=80154&hvtargid=kwd-83838147155260:loc-190&hydadcr=28884_14580403')
 
 
-#Initial Setup
-driver = webdriver.Chrome()
-driver.get('https://www.amazon.com/?tag=amazusnavi-20&hvadid=381823327672&hvpos=&hvnetw=g&hvrand=15369903253882284441&hvpone=&hvptwo=&hvqmt=e&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9031162&hvtargid=kwd-10573980&ref=pd_sl_7j18redljs_e&hydadcr=28883_11845445&gclid=CjwKCAjwmJeYBhAwEiwAXlg0ATpf1Z-JL2kpyEl7yRZRhGWjvKzG3tVkde1CAQCiNZ9JaYRHyJXjjRoCf5wQAvD_BwE')
+# Search_Button = driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]')
+# Search_Button = WebDriverWait(driver, 10).until(expected_conditions.presence_of_all_elements_located(By.ID, SearchBarID))
 
-
-Search_Button = driver.find_element(By.XPATH, '//*[@id="twotabsearchtextbox"]')
-# Change the string to any product you want to automatically search
+SearchBarID = 'twotabsearchtextbox'
+Search_Button = driver.find_element(By.ID, SearchBarID)
 Search_Button.send_keys('Graphics Card')
 
-# Clicking the Search Button
-Search_Button_Click = driver.find_element(By.XPATH, '//*[@id="nav-search-submit-button"]')
+
+# Search_Button_Click = driver.find_element(By.XPATH, '//*[@id="nav-search-submit-button"]')
+# Search_Button_Click = WebDriverWait(driver, 10).until(expected_conditions.presence_of_all_elements_located(By.ID, SearchButID))
+
+SearchButID = 'nav-search-submit-button'
+Search_Button_Click = driver.find_element(By.ID, SearchButID)
 Search_Button_Click.click()
 
-# Extra safety measure for how long you want the script to be running in seconds
 time.sleep(3600)
