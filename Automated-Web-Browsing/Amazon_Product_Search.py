@@ -13,7 +13,7 @@ options.page_load_strategy = 'normal'
 driver = webdriver.Edge(options=options)
 driver.get('https://www.amazon.com/?tag=hymsabk-20&ref=pd_sl_290dlthsvm_e&adgrpid=1341404752168026&hvadid=83838074749799&hvnetw=o&hvqmt=e&hvbmt=be&hvdev=c&hvlocint=&hvlocphy=80154&hvtargid=kwd-83838147155260:loc-190&hydadcr=28884_14580403')
 
-Wait = WebDriverWait(driver, 0)
+Wait = WebDriverWait(driver, 1)
 OriginalWindow = driver.current_window_handle
 Actions = ActionChains(driver)
 
@@ -44,9 +44,14 @@ Search_Button_Click.click()
 # driver.refresh() #Refreshing the Page
 # time.sleep(1)
 
-XPixels = 0
-YPixels = 1000
+def Scrolling(XPixels, YPixels, Scrolling_Amount):
+    LoopCount = 0
+    while LoopCount < int(Scrolling_Amount):
+        LoopCount += 1
+        Actions.scroll_by_amount(delta_x=int(XPixels), delta_y=int(YPixels)).perform(), time.sleep(1)
+    return 0
 
-Actions.scroll_by_amount(XPixels, YPixels).perform()
+Scrolling(0, 1000, 3)
+Scrolling(0.00, 1000.00, 3.0)
 
 time.sleep(3600)
